@@ -6,7 +6,7 @@
             [protean.api.transformation.sim :as sim])) ; import Protean's sim API - see https://passivsystems.github.io/protean-api/ for API Docs
 
 ; Import dependencies from https://clojars.org to maximise your sim behaviour.
-(sim/dependencies '[[clj-http "3.7.0"] ; to make http calls - https://github.com/dakrone/clj-http
+(sim/dependencies '[[clj-http "3.9.1"] ; to make http calls - https://github.com/dakrone/clj-http
                     [com.taoensso/timbre "4.10.0"]]) ; to write to a log file - https://github.com/ptaoussanis/timbre
 ; Actually both these libraries are currently on Protean's classpath and could
 ; be imported normally. But Protean's dependency tree may change so this is best
