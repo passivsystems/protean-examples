@@ -50,7 +50,7 @@
 
     ; Only need to specify the resources that you wish to enhance.
     ; The default sim behaviour (plus any sim-cfg overrides) will take care of the rest.
-    "api/pet" {
+    "pets" {
       ; A simulation rule is an anonymous function which is passed a Ring request map plus some
       ; additional Protean related values. Most Protean APIs will require the request to be fed to them.
       ; Use either Clojure short hand notation #(sim/response % 200) or (fn [r] (sim/response r 200))
@@ -64,7 +64,7 @@
       :get #(sim/response % 200) ; This request is validated via :sim-cfg :validate-rule above
     }
 
-    "api/pet/${petId}" {
+    "pets/${petId}" {
       ; Respond differently based on petId value.
       :get #(case (sim/path-param % "petId")
                   "cc11d131-ed9e-4d8b-b038-fdc1ded07978" (sim/response % 200)
