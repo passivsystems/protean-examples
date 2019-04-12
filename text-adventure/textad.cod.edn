@@ -17,12 +17,11 @@ Register to play the text adventure.
 
 Accepts a request parameter called name.
 "
-        :req {:query-params {:required {"name" "${name}"}}}
+        :req {:query-params {"name" ["${name}"]}}
         :rsp {
-          :200 {
-            :body-examples ["look-ref.json"]
-          }
+          :204 {}
           :400 {}
+          :409 {}
         }
       }
     }
@@ -35,7 +34,7 @@ Accepts a request parameter called name.
 
 Look at your current location.
 "
-        :req {:query-params {:required {"name" "${name}"}}}
+        :req {:query-params {"name" ["${name}"]}}
         :rsp {
           :200 {
             :body-examples ["look-ref.json"]
@@ -56,11 +55,7 @@ Look at your current location.
 Will move you to a new location.
 "
         :vars {"direction" {:type :Direction :doc "Direction to move in"}}
-        :req {
-          :query-params {
-            :required {"name" "${name}" "direction" "${direction}"}
-          }
-        }
+        :req {:query-params {"name" ["${name}"] "direction" ["${direction}"]}}
         :rsp {
           :200 {
             :body-examples ["look-ref.json"]
@@ -73,7 +68,7 @@ Will move you to a new location.
     "inventory" {
       :get {
         :doc "See your inventory"
-        :req {:query-params {:required {"name" "${name}"}}}
+        :req {:query-params {"name" ["${name}"]}}
         :rsp {
           :200 {
             :body-examples ["inventory-ref.json"]
@@ -91,7 +86,7 @@ Will move you to a new location.
 Will pickup an item in the game world.
 "
         :vars {"item" {:type :String :doc "Item to pick up"}}
-        :req {:query-params {:required {"name" "${name}" "item" "${item}"}}}
+        :req {:query-params {"name" ["${name}"] "item" ["${item}"]}}
         :rsp {
           :200 {
             :body-examples ["look-ref.json"]
@@ -110,7 +105,9 @@ Will pickup an item in the game world.
 Will slap an entity.
 "
         :vars {"target" {:type :String :doc "Entity to slap"}}
-        :req {:query-params {:required {"name" "${name}" "target" "${target}"}}}
+        :req {:query-params {"name" ["${name}"]
+                             "target" ["${target}"]}}
+
         :rsp {
           :200 {
             :body-examples ["look-ref.json"]
@@ -129,7 +126,7 @@ Will slap an entity.
 Will mug an entity.
 "
         :vars {"target" {:type :String :doc "Entity to mug"}}
-        :req {:query-params {:required {"name" "${name}" "target" "${target}"}}}
+        :req {:query-params {"name" ["${name}"] "target" ["${target}"]}}
         :rsp {
           :200 {
             :body-examples ["look-ref.json"]
